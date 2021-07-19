@@ -26,14 +26,15 @@ numbers = pd.Series(['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '
 
 print(type(numbers))
 print(numbers.size)
-numbers_float = numbers.str.replace("$", "").str.replace(",", "").astype(float)
-print(numbers_float)
+floats = numbers.str.replace(",", "").str.replace("$", "").astype(float)
 #%%
-print(numbers_float.nlargest(n=1, keep="all").values[0])
-print(numbers_float.nsmallest(n=1, keep="all").values[0])
-print(str(numbers_float.nsmallest(n=1, keep="all").values[0]) + "-" + str(numbers_float.nlargest(n=1, keep="all").values[0]))
+print(floats)
 #%%
-binned = pd.cut(numbers_float, 4, labels=["0 - 1.9M", "1.9M - 2.39M", "2.39 - 3.59",  "3.59M - 4.78M"]).value_counts()
+print(floats.nlargest(n=1, keep="all").values[0])
+print(floats.nsmallest(n=1, keep="all").values[0])
+print(str(floats.nsmallest(n=1, keep="all").values[0]) + "-" + str(floats.nlargest(n=1, keep="all").values[0]))
+#%%
+binned = pd.cut(floats, 4, labels=["0 - 1.9", "1.9 - 2.39", "2.39 - 3.59",  "3.59 - 4.78"]).value_counts()
 matplt.clf()
 
 binned.plot.bar()
