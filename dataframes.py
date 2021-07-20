@@ -36,7 +36,7 @@ print(mpg.dtypes)
 print(mpg.info)
 #%%
 print(mpg.describe())
-#mpg.rename(columns={'cty': 'city', 'hwy': 'highway'},inplace = True)
+mpg.rename(columns={'cty': 'city', 'hwy': 'highway'},inplace = True)
 print(mpg.head())
 #%%
 print(mpg['city' > 'highway'])
