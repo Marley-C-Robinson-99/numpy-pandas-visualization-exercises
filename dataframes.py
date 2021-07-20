@@ -54,3 +54,16 @@ print(mpg.head())
 #%%
 print(mpg[['manufacturer', 'average_mileage']].where(mpg['manufacturer'] == 'dodge').sort_values(by=['average_mileage'], ascending = True).head(1))
 print(mpg[['manufacturer', 'average_mileage']].where(mpg['manufacturer'] == 'dodge').sort_values(by=['average_mileage'], ascending = False).head(1))
+
+#%%
+mml = data('Mammals')
+print(mml.head(5))
+print(mml.size)
+#%%
+print(mml.info())
+print(mml.describe())
+#%%
+print(mml[['weight', 'speed']].sort_values(by=['speed'], ascending = False).head(1))
+print((sum(mml['specials']) / (mml['specials'].size)) * 100)
+print(mml[['hoppers', 'speed']].where((mml['speed'] > (mml['speed']).median()) & (mml['hoppers'] == True))\
+.sort_values(by=['speed'], ascending = False).dropna().count())
