@@ -47,11 +47,22 @@ users = pd.DataFrame({
     'role_id': [1, 2, 3, 3, np.nan, np.nan]
 })
 #%%
-print(users.drop('id', 1).merge(roles, how='right'))
+print(users.drop('role_id', 1).merge(roles))
 #%%
 mpg_doc = data('mpg', show_doc = True)
 mpg = data('mpg')
 print(mpg)
 #%%
-#mpg.rename(columns={'cty': 'City', 'hwy': 'Highway'}, inplace = True)
+mpg.rename(columns={'cty': 'city', 'hwy': 'highway'}, inplace = True)
 print(mpg['manufacturer'].unique().size)
+print(mpg)
+#%%
+print(mpg['model'].unique().size)
+#%%
+mpg['average_mileage'] = (mpg.city + mpg.highway) / 2
+print(mpg[['average_mileage', 'city', 'highway']])
+#%%
+mpg['is_automatic'] = (mpg['trans'].str.startswith('auto') == True)
+print(mpg.sort_values(by='is_automatic', ascending = False))
+#%%
+print(mpg.sort_values(by='average_mileage', ascending = False).groupby('manufacturer').agg([min]))
