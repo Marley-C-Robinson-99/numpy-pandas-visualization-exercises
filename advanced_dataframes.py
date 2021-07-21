@@ -66,3 +66,7 @@ mpg['is_automatic'] = (mpg['trans'].str.startswith('auto') == True)
 print(mpg.sort_values(by='is_automatic', ascending = False))
 #%%
 print(mpg.sort_values(by='average_mileage', ascending = False).groupby('manufacturer').agg([min]))
+#%%
+sql3 = '''
+SELECT
+    item_price
